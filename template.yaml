@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  shortenLink
+  Sample SAM Template for shortenLink
+
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: python3.8
+    MemorySize: 128
+
+Resources:
+  ShortenLinkFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: helloWorld/helloWorld/
+      Handler: app.lambda_handler
+      Policies:
+        - arn:aws:iam::394922924679:policy/getFirebaseTenxorKey
+      Events:
+        ShortenLinkEvent:
+          Type: Api 
+          Properties:
+            Path: /shorten
+            Method: post
+
+Outputs:
+  Api:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/shorten/"
+  Function:
+    Value: !GetAtt ShortenLinkFunction.Arn
+  HelloWorldFunctionIamRole:
+    Value: !GetAtt ShortenLinkFunctionRole.Arn
