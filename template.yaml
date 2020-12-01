@@ -14,7 +14,7 @@ Resources:
   ShortenLinkFunction:
     Type: AWS::Serverless::Function 
     Properties:
-      CodeUri: helloWorld/helloWorld/
+      CodeUri: helloWorld/
       Handler: app.lambda_handler
       Policies:
         - arn:aws:iam::394922924679:policy/getFirebaseTenxorKey
