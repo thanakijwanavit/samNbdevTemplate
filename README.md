@@ -1,11 +1,24 @@
-# Sam nbdev template
+# VillaDeliveryCost
+> Summary description here.
+
+
+This file will become your README and also the index of your documentation.
+
+## Install
+
+`pip install your_project_name`
+
 ## How to use
 
-clone the repository and remove .git file
+Fill me in please! Don't forget code examples:
 
 ```
-git clone --depth=1 --branch=master https://github.com/thanakijwanavit/samNbdevTemplate
-rm -rf ./samNbdevTemplate/.git
+1+1
 ```
+
+
+
+
+    2
 
 

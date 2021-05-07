@@ -1,34 +1,86 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  shortenLink
-  Sample SAM Template for shortenLink
-
+    product 2 , refactor and faster interaction wilth villa master product
+    
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 10
+    CodeUri: ./
     Runtime: python3.8
-    MemorySize: 128
-
+    Layers:
+      - !Ref LambdaLayer
+    VpcConfig:
+      SecurityGroupIds:
+      - sg-73dae500
+      SubnetIds:
+      - subnet-0ca9ad2cd96fccccc
+    Environment:
+      Variables:
+        DAX_ENDPOINT: 'longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111'
+        DATABASE_TABLE_NAME: !Join ['-', [ "product-table" , !Ref BRANCH ]]
+        REGION: 'ap-southeast-1'
+        BRANCH: !Ref BRANCH
+        SCHEMAURL: 'https://raw.githubusercontent.com/thanakijwanavit/villaMasterSchema/master/product/product.yaml'
+      
+      
+Parameters: 
+  BRANCH: 
+    Type: String
+    Default: dev-manual
+    Description: root branch name
+    
+    
+    
 Resources:
-  ShortenLinkFunction:
+  ######## api gateway #######
+  Endpoint:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      EndpointConfiguration:
+        Type: REGIONAL
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+        
+  ######## functions ######
+  Get:
     Type: AWS::Serverless::Function 
     Properties:
-      CodeUri: helloWorld/
-      Handler: app.lambda_handler
+      FunctionName: !Join ['-',[ "get" , "data",!Ref BRANCH ]]
+      Handler: app.get
       Policies:
-        - arn:aws:iam::394922924679:policy/getFirebaseTenxorKey
+        - arn:aws:iam::394922924679:policy/villaDaxPolicy
       Events:
-        ShortenLinkEvent:
+        GetProduct:
           Type: Api 
           Properties:
-            Path: /shorten
-            Method: post
+            Path: /get
+            Method: get
+            RestApiId: !Ref Endpoint
+            
+
+###### lambdaLayer ######
+
+  LambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: lambdalayer
+      ContentUri: ./layer/package.zip
+      CompatibleRuntimes:
+        - python3.8
+
+  LayerPermission:
+    Type: AWS::Lambda::LayerVersionPermission
+    Properties:
+      Action: lambda:GetLayerVersion
+      LayerVersionArn: !Ref LambdaLayer
+      Principal: "*"
+
+
 
 Outputs:
-  Api:
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/shorten/"
-  Function:
-    Value: !GetAtt ShortenLinkFunction.Arn
-  HelloWorldFunctionIamRole:
-    Value: !GetAtt ShortenLinkFunctionRole.Arn
+  Endpoint:
+    Value: !Ref Endpoint
