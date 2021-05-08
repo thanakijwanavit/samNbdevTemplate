@@ -16,6 +16,6 @@ entries:
       title: Table
       url: table.html
     output: web
-    title: deliveryCost
+    title: src
   output: web
   title: Sidebar

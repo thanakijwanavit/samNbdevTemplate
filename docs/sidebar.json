@@ -1,5 +1,5 @@
 {
-  "deliveryCost": {
+  "src": {
     "Overview": "/",
     "get": "get.html",
     "Table": "table.html"
