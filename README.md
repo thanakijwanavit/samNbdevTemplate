@@ -17,4 +17,5 @@ you can put the IAM user keys in
 4. edit sam [template](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html) as necessary
 5. put requirements into `layer/requirements.txt` and run `cd layer&& bash lambdaLayer.sh`
 6. go back to the root directory and run `sam build` then `sam deploy --guided`
-7. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
+7. import the lambda functions into `/app.py`
+8. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
