@@ -21,7 +21,7 @@ Globals:
         DATABASE_TABLE_NAME: !Join ['-', [ "product-table" , !Ref BRANCH ]]
         REGION: 'ap-southeast-1'
         BRANCH: !Ref BRANCH
-        SCHEMAURL: 'https://raw.githubusercontent.com/thanakijwanavit/villaMasterSchema/master/product/product.yaml'
+        SCHEMAURL: ''
       
       
 Parameters: 
