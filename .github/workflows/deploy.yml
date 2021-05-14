@@ -74,7 +74,7 @@ jobs:
       run: |
         sam build --debug&&\
         sam deploy --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND --debug --parameter-overrides \
-        "BRANCH=dev-manual" \
+        "BRANCH=${env.GITHUB_REF_SLUG}" \
         
 
 
