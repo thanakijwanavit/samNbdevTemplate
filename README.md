@@ -20,11 +20,13 @@ you can put the IAM user keys in
   * [template](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html) as necessary, file `template.yaml`
   * test your sam template using `make test`
 
-3. put library to install with pip into layerRequirments.txt
+3. put library to install with pip into `layerRequirements.txt` or `samRequirements.txt`
+
 
 
 4. only for the first run:
   * run `sam build` then `sam deploy --guided`
+  * run `make test`
   
 5. editing the app router
   * edit the file `app/app.py`

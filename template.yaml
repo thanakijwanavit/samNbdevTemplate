@@ -49,11 +49,11 @@ Resources:
         AllowOrigin: "'*'"
         
   ######## functions ######
-  Get:
+  HelloWorld:
     Type: AWS::Serverless::Function 
     Properties:
-      FunctionName: !Join ['-',[ "get" , "data",!Ref BRANCH ]]
-      Handler: app.get
+      FunctionName: !Join ['-',[ "helloworld",!Ref BRANCH ]]
+      Handler: app.helloworld
       Policies:
         - arn:aws:iam::394922924679:policy/villaDaxPolicy
       Events:

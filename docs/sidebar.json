@@ -2,6 +2,7 @@
   "src": {
     "Overview": "/",
     "get": "get.html",
+    "helloworld": "helloWorld.html",
     "Table": "table.html"
   }
 }

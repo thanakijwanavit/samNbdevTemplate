@@ -13,6 +13,9 @@ entries:
       title: get
       url: get.html
     - output: web,pdf
+      title: helloworld
+      url: helloWorld.html
+    - output: web,pdf
       title: Table
       url: table.html
     output: web
