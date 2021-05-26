@@ -31,7 +31,9 @@ you can put the IAM user keys in
   * put this on the top line `from src.<your nb name> import <your lambda function in nbdev>`
   * dont forget to put `#export` on top of the cells you want to include in the product
   
-8. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
+6. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
   `in most cases you should only edit the last line`
+
+7. go to [cloudformation](https://ap-southeast-1.console.aws.amazon.com/cloudformation) console to see the result
 
 
