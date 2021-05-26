@@ -19,7 +19,7 @@ Globals:
       Variables:
         DAX_ENDPOINT: 'longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111'
         DATABASE_TABLE_NAME: !Join ['-', [ "product-table" , !Ref BRANCH ]]
-        REGION: 'ap-southeast-1'
+        REGION: !Ref REGION
         BRANCH: !Ref BRANCH
         SCHEMAURL: ''
       
@@ -29,6 +29,9 @@ Parameters:
     Type: String
     Default: dev-manual
     Description: root branch name
+  REGION:
+    Type: String
+    Default: 'ap-southeast-1'
     
     
     
@@ -82,5 +85,7 @@ Resources:
 
 
 Outputs:
-  Endpoint:
+  ApiId:
     Value: !Ref Endpoint
+  Endpoint:
+    Value: !Sub 'https://${Endpoint}.execute-api.${REGION}.amazonaws.com/Prod/'
