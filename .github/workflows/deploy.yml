@@ -76,7 +76,7 @@ jobs:
         sam deploy --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
         --debug --stack-name "nbdev-template-{{ env.GITHUB_REF_SLUG }}"\
         --parameter-overrides \
-        "BRANCH=${{ env.GITHUB_REF_SLUG }}" \
+        "BRANCH=${{ env.GITHUB_REF_SLUG }}"
         
 
 
