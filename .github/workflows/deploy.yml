@@ -21,7 +21,7 @@ jobs:
 
       - name: install prereq
         run: |
-          sudo apt update &&\
+          sudo apt update --allow-releaseinfo-change &&\
           sudo apt install -y sudo zip bash
       
       - name: scan and build all layers
@@ -51,7 +51,7 @@ jobs:
 
     - name: install prereq
       run: |
-        apt update &&\
+        apt update --allow-releaseinfo-change &&\
         apt install -y sudo zip bash
 
     - name: downloadPackage from build
