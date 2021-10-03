@@ -22,8 +22,6 @@ you can put the IAM user keys in
 
 3. put library to install with pip into `layerRequirements.txt` or `samRequirements.txt`
 
-
-
 4. only for the first run:
   * run `sam build` then `sam deploy --guided`
   * run `make test`
@@ -39,3 +37,7 @@ you can put the IAM user keys in
 7. go to [cloudformation](https://ap-southeast-1.console.aws.amazon.com/cloudformation) console to see the result
 
 
+
+# Known problems
+
+if you can't build the layer with error such as version number not available, put in previous library version in requirements.txt
