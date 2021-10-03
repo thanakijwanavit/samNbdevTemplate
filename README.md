@@ -46,4 +46,6 @@ you can put the IAM user keys in
 
 # Known problems
 
-if you can't build the layer with error such as version number not available, put in previous library version in requirements.txt
+* if you can't build the layer with error such as version number not available, put in previous library version in requirements.txt
+
+* if build error during deployment, you need to manually delete the stack in console or cli `aws cloudformation delete-stack --stack-name <stackname>`
