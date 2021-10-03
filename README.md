@@ -32,7 +32,8 @@ you can put the IAM user keys in
   * dont forget to put `#export` on top of the cells you want to include in the product
   
 6. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
-  `in most cases you should only edit the last line`
+  `in most cases you should only edit the stack prefix `
+  * edit stack prefix (line 75)
   
 7. to get github action to work properly, you need to add the required variables including
   * DOCKER_HUB_ACCESS_TOKEN
