@@ -33,8 +33,14 @@ you can put the IAM user keys in
   
 6. (optional) to deploy using github action, edit the `deploy.yml` file as appropriate
   `in most cases you should only edit the last line`
+  
+7. to get github action to work properly, you need to add the required variables including
+  * DOCKER_HUB_ACCESS_TOKEN
+  * DOCKER_HUB_USERNAME
+  * PROD_AWS_ACCESS_KEY_ID
+  * PROD_AWS_SECRET_ACCESS_KEY
 
-7. go to [cloudformation](https://ap-southeast-1.console.aws.amazon.com/cloudformation) console to see the result
+8. go to [cloudformation](https://ap-southeast-1.console.aws.amazon.com/cloudformation) console to see the result
 
 
 
