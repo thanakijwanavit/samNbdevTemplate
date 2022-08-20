@@ -10,11 +10,6 @@ Globals:
     Runtime: python3.8
     Layers:
       - !Ref LambdaLayer
-    VpcConfig:
-      SecurityGroupIds:
-      - sg-73dae500
-      SubnetIds:
-      - subnet-0ca9ad2cd96fccccc
     Environment:
       Variables:
         DAX_ENDPOINT: 'longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111'
@@ -63,6 +58,29 @@ Resources:
             Path: /get
             Method: get
             RestApiId: !Ref Endpoint
+ ######## tables ##############
+  Table:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: lastUpdated
+          AttributeType: N
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: "lastUpdated"
+          KeySchema:
+            - AttributeName: lastUpdated
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      KeySchema: 
+        - AttributeName: id
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      TableName: !Join [ "-" , ["example-table", !Ref BRANCH]]
             
 
 ###### lambdaLayer ######
