@@ -4,7 +4,7 @@
 
 ## Install
 
-`pip install aws-sam-cli nbdev pynamodb-dax`
+`pip install aws-sam-cli 'nbdev<2' pynamodb-dax`
 
 to configure aws credentials run `brew install awscli` then `aws configure`
 you can put the IAM user keys in
@@ -14,15 +14,18 @@ you can put the IAM user keys in
 1. fill in all the notebooks in the folder nbs
   * put `#export` on top of any cells you want to export and `#default_exp filename` on top of the notebook (see example`get.ipynb`)
   * put `#hide` on top of the cells you dont want to include in python package
-  * run `make build`
+  * run `make build` to update code in `src`
 
 2. edit sam template 
   * [template](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html) as necessary, file `template.yaml`
   * test your sam template using `make test`
 
-3. put library to install with pip into `layerRequirements.txt` or `samRequirements.txt`
+3. add required libraries list to `layerRequirements.txt` or `samRequirements.txt`
 
 4. only for the first run:
+  * create a new s3 bucket or use an existing bucket, place the uri in sam.toml
+  * for example `s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-jx3h3o6mj7ty"`
+  * set the region as appropriate in sam.toml
   * run `sam build` then `sam deploy --guided`
   * run `make test`
   
